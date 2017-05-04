@@ -3,3 +3,7 @@
     height: 450px !important;
     resize: vertical;
 }
+
+#buttKeyGen {
+    float: right;
+}
