@@ -8,7 +8,7 @@ openpgp.initWorker({ path:'openpgp.worker.js' }) // set the relative web worker 
 */
 
 const PASSPHRASE = "mlhphrime2017@teamalpha";
-const KEY_SIZE = 512;
+const KEY_SIZE = 4096;
 
 function generateNewKey() {
     "use strict";
@@ -23,13 +23,22 @@ function generateNewKey() {
     return openpgp.generateKey(options).then(function(key) {
 
         let generatedKey = {};
-        generatedKey.private_key = key.privateKeyArmored; // '-----BEGIN PGP PRIVATE KEY BLOCK ... '
-        generatedKey.public_key = key.publicKeyArmored;   // '-----BEGIN PGP PUBLIC KEY BLOCK ... '
+        generatedKey.privateKey = key.privateKeyArmored; // '-----BEGIN PGP PRIVATE KEY BLOCK ... '
+        generatedKey.publickey = key.publicKeyArmored;   // '-----BEGIN PGP PUBLIC KEY BLOCK ... 'K
+        generatedKey.options = options;
 
         return generatedKey;
     });
 }
 
 $("#buttKeyGen").click(() => {
-    console.log(generateNewKey());
+
+
+    generateNewKey().then((keys) => {
+        $("#privateKey").val(keys.privateKey);
+        $("#publicKey").val(keys.publickey);
+        $("#privateKeyPass").val(keys.options.passphrase);
+
+        console.log(keys);
+    })
 });
