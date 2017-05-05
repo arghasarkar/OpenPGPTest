@@ -31,5 +31,5 @@ function generateNewKey() {
 }
 
 $("#buttKeyGen").click(() => {
-    console.log("Key gen");
+    console.log(generateNewKey());
 });
