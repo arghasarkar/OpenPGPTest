@@ -1,5 +1,12 @@
 "use strict";
 
+var openpgp = window.openpgp; // use as CommonJS, AMD, ES6 module or via window.openpgp
+/*
+
+openpgp.initWorker({ path:'openpgp.worker.js' }) // set the relative web worker path
+
+*/
+
 const PASSPHRASE = "mlhphrime2017@teamalpha";
 const KEY_SIZE = 512;
 
@@ -23,6 +30,6 @@ function generateNewKey() {
     });
 }
 
-$("#buttkeygen").click(() => {
+$("#buttKeyGen").click(() => {
     console.log("Key gen");
 });
