@@ -48,7 +48,7 @@ function encrypt() {
 
     let publicKey = document.getElementById("publicKey").value;
     let privateKey = document.getElementById("privateKey").value;
-    let passphrase = 'secret passphrase'; //what the privKey is encrypted with
+    let passphrase = document.getElementById("privateKeyPass").value; //what the privateKey is encrypted with
 
     // let privateKeyObj = openpgp.key.readArmored(privateKey).keys[0];
     // privateKeyObj.decrypt(passphrase);
@@ -70,4 +70,30 @@ function encrypt() {
 
 $("#buttEncrypt").click( () => {
     encrypt();
+});
+
+function decrypt() {
+    let encryptedMessage = document.getElementById("message").value;
+
+    let publicKey = document.getElementById("publicKey").value;
+    let privateKey = document.getElementById("privateKey").value;
+    let passphrase = document.getElementById("privateKeyPass").value; //what the privateKey is encrypted with
+
+    var privateKeyObj = openpgp.key.readArmored(privateKey).keys[0];
+    privateKeyObj.decrypt(passphrase);
+
+    let options = {
+        message: openpgp.message.readArmored(encryptedMessage),     // parse armored message
+        publicKeys: openpgp.key.readArmored(publicKey).keys,    // for verification (optional)
+        privateKey: privateKeyObj // for decryption
+    };
+
+    openpgp.decrypt(options).then(function(plaintext) {
+        $("#message").val(plaintext.data);
+        return plaintext.data; // 'Hello, World!'
+    });
+}
+
+$("#buttDecrypt").click( () => {
+    decrypt();
 });
