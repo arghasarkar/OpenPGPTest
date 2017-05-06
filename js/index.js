@@ -8,7 +8,7 @@ openpgp.initWorker({ path:'openpgp.worker.js' }) // set the relative web worker 
 */
 
 const PASSPHRASE = "mlhphrime2017@teamalpha";
-const KEY_SIZE = 4096;
+const KEY_SIZE = 1024;
 
 function generateNewKey() {
     "use strict";
