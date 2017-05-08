@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OpenPGP JS Test</title>
+
+    <script src="vendor/jQuery/jquery-3.2.1.min.js"></script>
+
+    <!-- Compiled and minified CSS -->
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <link rel="stylesheet" href="vendor/materialize/materialize.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="vendor/materialize/materialize.js"></script>
+
+    <link rel="stylesheet" href="css/index.css">
+
+     <!--Importing OpenPGPJs-->
+    <script src="vendor/openpgpjs/openpgpjs.js"></script>
+    <script src="vendor/openpgpjs/openpgpjs.worker.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="input-field col s6">
+                <i class="material-icons prefix">vpn_key</i>
+                <textarea id="privateKey" class="materialize-textarea keyInput" placeholder="Private key"></textarea>
+            </div>
+
+            <div class="input-field col s6">
+                <i class="material-icons prefix">lock</i>
+                <textarea id="publicKey" class="materialize-textarea keyInput" placeholder="Public key"></textarea>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">vpn_key</i>
+                <input placeholder="Private key password" id="privateKeyPass" type="text" class="validate">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">vpn_key</i>
+                <textarea id="message" class="materialize-textarea" placeholder="Message">test message</textarea>
+            </div>
+        </div>
+
+        <a id="buttEncrypt" class="waves-effect waves-light btn">Encrypt</a>
+        <a id="buttDecrypt" class="waves-effect waves-light btn">Decrypt</a>
+        <a id="buttKeyGen" class="waves-effect waves-light btn float-right">Generate keys</a>
+    </div>
+
+
+    <!-- Javascript for this page -->
+    <script src="js/index.js"></script>
+
+
+</body>
+</html>
