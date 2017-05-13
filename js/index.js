@@ -2,9 +2,7 @@
 
 var openpgp = window.openpgp; // use as CommonJS, AMD, ES6 module or via window.openpgp
 /*
-
 openpgp.initWorker({ path:'openpgp.worker.js' }) // set the relative web worker path
-
 */
 
 const PASSPHRASE = "mlhphrime2017@teamalpha";
@@ -33,6 +31,20 @@ function generateNewKey() {
 
 $("#buttKeyGen").click(() => {
 
+    let userIDs = [
+        {
+            name: "Test User"
+        },
+        {
+            email: "test.user@example.com"
+        }
+    ];
+
+    let options = {
+        userIds: userIDs,     // multiple user IDs
+        numBits: KEY_SIZE,                                          // RSA key size
+        passphrase: PASSPHRASE                                      // protects the private key
+    };
 
     generateNewKey().then((keys) => {
         $("#privateKey").val(keys.privateKey);

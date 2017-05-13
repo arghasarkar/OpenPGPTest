@@ -7,3 +7,7 @@
 .float-right {
     float: right;
 }
+
+textarea {
+    overflow-y: scroll;
+}
