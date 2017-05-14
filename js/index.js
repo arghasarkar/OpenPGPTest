@@ -8,14 +8,14 @@ openpgp.initWorker({ path:'openpgp.worker.js' }) // set the relative web worker 
 const PASSPHRASE = "mlhphrime2017@teamalpha";
 const KEY_SIZE = 1024;
 
-function generateNewKey() {
+function generateNewKey(userIDs, numBits, passPhrase) {
     "use strict";
     console.log("Gen new key");
 
     let options = {
-        userIds: "",     // multiple user IDs
-        numBits: KEY_SIZE,                                          // RSA key size
-        passphrase: PASSPHRASE                                      // protects the private key
+        userIds: userIDs,     // multiple in array [ {name, email} ]
+        numBits: numBits,                                          // RSA key size. 4096 bits in production
+        passphrase: passPhrase                                      // protects the private key
     };
 
     return openpgp.generateKey(options).then(function(key) {
@@ -33,9 +33,7 @@ $("#buttKeyGen").click(() => {
 
     let userIDs = [
         {
-            name: "Test User"
-        },
-        {
+            name: "Test User",
             email: "test.user@example.com"
         }
     ];
@@ -46,7 +44,7 @@ $("#buttKeyGen").click(() => {
         passphrase: PASSPHRASE                                      // protects the private key
     };
 
-    generateNewKey().then((keys) => {
+    generateNewKey(options.userIds, options.numBits, options.passphrase).then((keys) => {
         $("#privateKey").val(keys.privateKey);
         $("#publicKey").val(keys.publickey);
         $("#privateKeyPass").val(keys.options.passphrase);
